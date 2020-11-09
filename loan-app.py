@@ -22,7 +22,9 @@ st.sidebar.header('User Input Features')
 
 
 # Collects user input features into dataframe
-uploaded_file = st.sidebar.file_uploader("Upload your input CSV file", type=["csv"])
+#uploaded_file = st.sidebar.file_uploader("Upload your input CSV file", type=["csv"])
+uploaded_file = None
+
 if uploaded_file is not None:
     input_df = pd.read_csv(uploaded_file)
 else:
