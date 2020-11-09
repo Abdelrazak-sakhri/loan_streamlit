@@ -3,12 +3,17 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import logging
+from PIL import Image
 from sklearn.preprocessing import LabelEncoder
 import pickle
 from sklearn.ensemble import RandomForestClassifier
 
+
+image = Image.open('banner.jpg')
+st.image(image, use_column_width = True, output_format="JPG")
+
+
 st.write("""
-# Application Loan Prediction
 Il s'agit d'un projet dont le but est de définir si l'on doit accorder un prêt ou non en fonction de spécifications d'entrées.
 """)
 
@@ -46,7 +51,7 @@ else:
                 'Loan_Amount_Term': Loan_Amount_Term * 12,
                 'Credit_History': Credit_History,
                 'Property_Area': Property_Area,
-                'SumperMount' : LoanAmount / Loan_Amount_Term
+                #'SumperMount' : LoanAmount / Loan_Amount_Term
                 }
 
         logging.warning(data)
@@ -128,7 +133,7 @@ prediction_proba = load_clf.predict_proba(df)
 
 
 st.subheader('Prediction')
-loan_prediction = np.array(['loan accoded','loan refused'])
+loan_prediction = np.array(['loan refused', 'loan accorded'])
 st.write(loan_prediction[prediction])
 
 st.subheader('Prediction Probability')
